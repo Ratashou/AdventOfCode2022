@@ -8,24 +8,18 @@ priorities = {'a':1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,'j':10,'k':1
               'U':47,'V':48,'W':49,'X':50,'Y':51,'Z':52}
 
 totalPriority = 0
+rucksackList = []
 for line in file:
-    halfLength = (len(line) / 2) - 1
-    i = 0
-    firstCompartment = ''
-    secondCompartment = ''
+    rucksackList.append(line)    
 
-    while i < len(line):
-        if i <= halfLength:
-            firstCompartment += line[i]
-        else:
-            secondCompartment += line[i]
-        i+=1
-
-    for character in firstCompartment:
-        if character in secondCompartment:
+i=0
+while i < len(rucksackList):
+    for character in rucksackList[i]:
+        if character in rucksackList[i+1] and character in rucksackList[i+2]:
             totalPriority += priorities[character]
             break
+    i+=3
 
 print(totalPriority)
-        
+
 file.close()
